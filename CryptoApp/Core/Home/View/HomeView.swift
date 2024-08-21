@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State private var cryptos: [CryptoCurrency] = []
      
     @State private var showprotfolio : Bool = false
     
@@ -21,6 +23,8 @@ struct HomeView: View {
                 homeheader
                
                 Spacer(minLength: 0)
+                
+                cryptolist
                
             }
         }
@@ -57,6 +61,36 @@ extension HomeView{
         }
         .padding(.horizontal)
         
+    }
+    
+    
+    private var cryptolist : some View{
+        NavigationView {
+            List(cryptos) { crypto in
+                HStack {
+                    AsyncImage(url: URL(string: crypto.image)) { image in
+                        image.resizable()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    VStack(alignment: .leading) {
+                        Text(crypto.name)
+                            .font(.headline)
+                        Text("$\(crypto.current_price, specifier: "%.2f")")
+                            .font(.subheadline)
+                    }
+                }
+            }
+            //.navigationTitle("Cryptocurrencies")
+        }
+        .onAppear {
+            CryptoService().fetchCryptos { cryptos in
+                self.cryptos = cryptos
+            }
+        }
+
     }
     
 }
