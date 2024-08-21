@@ -15,6 +15,10 @@ struct ContentView: View {
                 Text("accentcolor")
                     .font(.title)
                     .foregroundStyle(Color.theme.green)
+                
+                Text("this the the new text")
+                    .font(.largeTitle)
+                    .foregroundStyle(Color.theme.red)
                     
                 
             }

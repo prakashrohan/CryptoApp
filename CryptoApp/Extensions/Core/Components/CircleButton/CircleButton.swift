@@ -7,12 +7,40 @@
 
 import SwiftUI
 
+
+
 struct CircleButton: View {
+    
+    let iconName : String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       Image(systemName: iconName)
+            
+            .font(.headline)
+            .foregroundStyle(Color.theme.accent)
+            .frame(width: 50 , height: 50)
+            .background(
+                Circle()
+                    .foregroundStyle(Color.theme.background)
+            )
+            .shadow(
+                color: Color.theme.accent.opacity(0.25), radius: 10, x:0 , y:0
+            )
+            .padding()
+
     }
 }
 
 #Preview {
-    CircleButton()
+    Group{
+        CircleButton(iconName: "info")
+            .padding()
+            .previewLayout(.sizeThatFits)
+        
+        CircleButton(iconName: "plus")
+            .padding()
+            .previewLayout(.sizeThatFits)
+            .colorScheme(.dark)
+    }
+  
 }
