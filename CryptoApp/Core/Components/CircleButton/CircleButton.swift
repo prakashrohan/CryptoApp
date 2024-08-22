@@ -41,6 +41,14 @@ struct CircleButton: View {
             .padding()
             .previewLayout(.sizeThatFits)
             .colorScheme(.dark)
+        
+        
+        CircleButton(iconName: "line.3.horizontal")
+            .padding()
+            .previewLayout(.sizeThatFits)
+            .colorScheme(.dark)
+        
+        
     }
   
 }
