@@ -53,7 +53,7 @@ struct PortfolioView: View {
                     .onDelete(perform: removeItems)
                 }
             }
-            .navigationTitle("Portfolio") // Set the title for the navigation bar
+            
         }
     }
     
