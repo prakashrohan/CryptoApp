@@ -162,6 +162,8 @@
 			dependencies = (
 			);
 			name = CryptoApp;
+			packageProductDependencies = (
+			);
 			productName = CryptoApp;
 			productReference = 97DBDF842C75012F0052CD28 /* CryptoApp.app */;
 			productType = "com.apple.product-type.application";
@@ -190,6 +192,8 @@
 				Base,
 			);
 			mainGroup = 97DBDF7B2C75012F0052CD28;
+			packageReferences = (
+			);
 			productRefGroup = 97DBDF852C75012F0052CD28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

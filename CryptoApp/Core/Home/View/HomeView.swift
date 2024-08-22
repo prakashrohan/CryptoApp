@@ -75,7 +75,7 @@ extension HomeView{
                     } placeholder: {
                         ProgressView()
                     }
-                    VStack(alignment: .leading) {
+                    LazyVStack(alignment: .leading) {
                         Text(crypto.name)
                             .font(.headline)
                         Text("$\(crypto.current_price, specifier: "%.2f")")
@@ -92,5 +92,7 @@ extension HomeView{
         }
 
     }
+    
+  
     
 }
