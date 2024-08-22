@@ -5,20 +5,22 @@
 //  Created by Rohan Prakash on 22/08/24.
 //
 
+
+
 import Foundation
 
-struct CryptoCurrency: Identifiable, Codable {
+struct MarketData: Codable, Identifiable {
     let id: String
-    let name: String
     let symbol: String
-    let image: String
+    let name: String
     let current_price: Double
+    let price_change_percentage_24h: Double
+    let image: String
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case symbol
-        case image
-        case current_price = "current_price"
-    }
+    // Conform to Identifiable for use in List
+    //var id: String { id }
 }
+
+
+
+

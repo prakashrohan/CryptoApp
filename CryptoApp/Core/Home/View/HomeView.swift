@@ -1,98 +1,164 @@
-//
-//  HomeView.swift
-//  CryptoApp
-//
-//  Created by Rohan Prakash on 21/08/24.
-//
-
 import SwiftUI
 
 struct HomeView: View {
     
-    @State private var cryptos: [CryptoCurrency] = []
-     
-    @State private var showprotfolio : Bool = false
-    
+    @State private var marketData: [MarketData]?
+    @State private var globalMarketData: GlobalMarketData?  // This is the instance variable for global market data
+    @State private var showPortfolio: Bool = false
+    @State private var searchText: String = ""
+
     var body: some View {
-        ZStack{
+        ZStack {
             Color.theme.background
                 .ignoresSafeArea()
-            
-            VStack{
+
+            VStack {
+                homeHeader
                 
-                homeheader
+                searchBar
+                
+                // Display market info if available
+                if let globalData = globalMarketData {
+                    marketInfo(globalData: globalData)
+                }
+                
                
-                Spacer(minLength: 0)
                 
                 cryptolist
-               
+                
+                Spacer(minLength: 0)
+            }
+            .onAppear {
+                fetchGlobalMarketData { data in
+                    DispatchQueue.main.async {
+                        self.globalMarketData = data
+                    }
+                }
             }
         }
     }
 }
 
-#Preview {
-    HomeView()
-}
-
-extension HomeView{
+extension HomeView {
     
-    private var homeheader : some View{
-        
-        HStack{
-            CircleButton(iconName: showprotfolio ? "plus" : "info")
-               // .animation(.none)
+    private var homeHeader: some View {
+        HStack {
+            CircleButton(iconName: showPortfolio ? "info" : "plus")
             Spacer()
-            Text(showprotfolio ? "Protfolio" : "Live Prices" )
-                .animation(.none)
+            Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.theme.accent)
-            
             Spacer()
             CircleButton(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: showprotfolio ? 180 : 0))
+                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
                 .onTapGesture {
-                    withAnimation(.spring()){
-                        showprotfolio.toggle()
+                    withAnimation(.spring()) {
+                        showPortfolio.toggle()
                     }
-                  
                 }
         }
         .padding(.horizontal)
-        
     }
     
+    private var searchBar: some View {
+        TextField("Search...", text: $searchText)
+            .font(.subheadline)
+            .foregroundColor(Color.theme.accent)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal)
+    }
     
-    private var cryptolist : some View{
-        NavigationView {
-            List(cryptos) { crypto in
-                HStack {
-                    AsyncImage(url: URL(string: crypto.image)) { image in
-                        image.resizable()
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                    } placeholder: {
-                        ProgressView()
+    private func marketInfo(globalData: GlobalMarketData) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Market Info")
+                .font(.headline)
+                .foregroundColor(.red)
+
+            HStack {
+                Text("Market Cap:")
+                    .font(.subheadline)
+                    .foregroundColor(Color.theme.accent)
+                Text("\(globalData.data.marketCapUSD, specifier: "%.0f") USD")
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+            }
+            HStack {
+                Text("24h Trading Volume:")
+                    .font(.subheadline)
+                    .foregroundColor(Color.theme.accent)
+                Text("\(globalData.data.totalVolumeUSD, specifier: "%.0f") USD")
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 4)
+    }
+
+    
+
+
+    private var cryptolist: some View {
+        ZStack {
+            VStack {
+                if let data = marketData {
+                    List(filteredCryptos) { item in
+                        HStack {
+                            AsyncImage(url: URL(string: item.image)) { image in
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 40, height: 40)
+                            } placeholder: {
+                                ProgressView()
+                            }
+
+                            Text(item.name)
+                                .font(.headline)
+                                .foregroundStyle(Color.theme.accent)
+                                .fontWeight(.bold)
+                            
+                            Spacer()
+                            
+                            Text("\(item.current_price, specifier: "%.2f") USD")
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                                .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
+                        }
                     }
-                    LazyVStack(alignment: .leading) {
-                        Text(crypto.name)
-                            .font(.headline)
-                        Text("$\(crypto.current_price, specifier: "%.2f")")
-                            .font(.subheadline)
-                    }
+                } else {
+                    ProgressView()
+                        .onAppear {
+                            fetchMarketData { data in
+                                DispatchQueue.main.async {
+                                    self.marketData = data
+                                }
+                            }
+                        }
                 }
             }
-            //.navigationTitle("Cryptocurrencies")
         }
-        .onAppear {
-            CryptoService().fetchCryptos { cryptos in
-                self.cryptos = cryptos
-            }
-        }
-
     }
-    
-  
-    
+
+    private var filteredCryptos: [MarketData] {
+        if let data = marketData {
+            return data.filter { item in
+                searchText.isEmpty ||
+                item.name.localizedCaseInsensitiveContains(searchText) ||
+                item.symbol.localizedCaseInsensitiveContains(searchText)
+            }
+        } else {
+            return []
+        }
+    }
+}
+
+
+
+
+#Preview{
+    HomeView()
 }
