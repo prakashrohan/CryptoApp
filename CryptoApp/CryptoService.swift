@@ -31,3 +31,4 @@ func fetchMarketData(completion: @escaping ([MarketData]?) -> Void) {
 
 
 
+

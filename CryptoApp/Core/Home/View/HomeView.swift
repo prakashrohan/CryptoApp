@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+
     @State private var marketData: [MarketData]?
     @State private var globalMarketData: GlobalMarketData?
     @State private var showPortfolio: Bool = false
@@ -10,6 +10,7 @@ struct HomeView: View {
     @State private var showAddCryptoOptions: Bool = false
     @State private var portfolio: [MarketData] = []
     @State private var tappedCryptoId: String? = nil
+    @State private var selectedCrypto: MarketData? = nil
 
     var body: some View {
         ZStack {
@@ -26,24 +27,15 @@ struct HomeView: View {
                             .animation(.easeOut(duration: 0.3))
                     }
                 }
-                
+
                 searchBar
-                
+
                 cryptolist
-                
+
                 Spacer(minLength: 0)
             }
             .onAppear {
-                fetchGlobalMarketData { data in
-                    DispatchQueue.main.async {
-                        self.globalMarketData = data
-                    }
-                }
-                fetchMarketData { data in
-                    DispatchQueue.main.async {
-                        self.marketData = data
-                    }
-                }
+                loadData()
             }
             .gesture(
                 TapGesture()
@@ -62,7 +54,7 @@ struct HomeView: View {
 }
 
 extension HomeView {
-    
+
     private var homeHeader: some View {
         HStack {
             CircleButton(iconName: showAddCryptoOptions ? "line.3.horizontal" : "plus")
@@ -76,7 +68,7 @@ extension HomeView {
                     }
                 }
             Spacer()
-            Text(showPortfolio ? "Portfolio" : "Live Prices")
+            Text("Live Prices")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.theme.accent)
@@ -92,7 +84,6 @@ extension HomeView {
         .padding(.horizontal)
     }
 
-    
     private func marketInfo(globalData: GlobalMarketData) -> some View {
         VStack(alignment: .center, spacing: 4) {
             Text("Market Info")
@@ -119,7 +110,7 @@ extension HomeView {
         .padding(.horizontal)
         .padding(.vertical, 4)
     }
-    
+
     private var searchBar: some View {
         TextField("Search...", text: $searchText, onEditingChanged: { isEditing in
             withAnimation(.easeInOut(duration: 0.3)) {
@@ -147,8 +138,8 @@ extension HomeView {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 20, height: 40)
                                     .foregroundColor(Color.blue)
-                                    .scaleEffect(tappedCryptoId == item.id ? 1.2 : 1.0) // Scale effect
-                                    .opacity(tappedCryptoId == item.id ? 0.5 : 1.0) // Opacity effect
+                                    .scaleEffect(tappedCryptoId == item.id ? 1.2 : 1.0)
+                                    .opacity(tappedCryptoId == item.id ? 0.5 : 1.0)
                                     .animation(.easeInOut(duration: 0.2), value: tappedCryptoId)
                                     .onTapGesture {
                                         tappedCryptoId = item.id
@@ -173,13 +164,17 @@ extension HomeView {
                                 .font(.headline)
                                 .foregroundStyle(Color.theme.accent)
                                 .fontWeight(.bold)
-                            
+
                             Spacer()
-                            
+
                             Text("\(item.current_price, specifier: "%.2f") USD")
                                 .font(.subheadline)
                                 .fontWeight(.bold)
                                 .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedCrypto = item
                         }
                     }
                 } else {
@@ -194,8 +189,23 @@ extension HomeView {
                 }
             }
         }
+        .sheet(item: $selectedCrypto) { crypto in
+            CryptoDetailView(crypto: crypto)
+        }
     }
 
+    private func loadData() {
+        fetchGlobalMarketData { data in
+            DispatchQueue.main.async {
+                self.globalMarketData = data
+            }
+        }
+        fetchMarketData { data in
+            DispatchQueue.main.async {
+                self.marketData = data
+            }
+        }
+    }
 
     private var filteredCryptos: [MarketData] {
         guard let data = marketData else { return [] }
@@ -211,18 +221,18 @@ extension HomeView {
 func formatNumber(_ number: Double) -> String {
     switch number {
     case 1_000_000_000_000...:
-        return String(format: "%.2fT", number / 1_000_000_000_000) // Trillions
+        return String(format: "%.2fT", number / 1_000_000_000_000)
     case 1_000_000_000...:
-        return String(format: "%.2fB", number / 1_000_000_000) // Billions
+        return String(format: "%.2fB", number / 1_000_000_000)
     case 1_000_000...:
-        return String(format: "%.2fM", number / 1_000_000) // Millions
+        return String(format: "%.2fM", number / 1_000_000)
     case 1_000...:
-        return String(format: "%.2fK", number / 1_000) // Thousands
+        return String(format: "%.2fK", number / 1_000)
     default:
-        return String(format: "%.2f", number) // Less than 1000
+        return String(format: "%.2f", number)
     }
 }
 
-#Preview {
+#Preview{
     HomeView()
 }

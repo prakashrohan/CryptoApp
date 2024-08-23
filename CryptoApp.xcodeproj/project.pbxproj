@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		970D91742C766553004C219E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D91732C766553004C219E /* HomeView.swift */; };
 		970D91782C76673B004C219E /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D91772C76673B004C219E /* CircleButton.swift */; };
+		97549A532C7810F100D02536 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97549A522C7810F100D02536 /* GoogleService-Info.plist */; };
+		9772EDFA2C789C30002D98E0 /* CryptoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772EDF92C789C30002D98E0 /* CryptoData.swift */; };
+		9772EDFC2C789E6A002D98E0 /* PriceLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772EDFB2C789E6A002D98E0 /* PriceLineGraphView.swift */; };
 		977994D32C767C95001C97B4 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977994D22C767C95001C97B4 /* CoinModel.swift */; };
 		977994D52C769A1A001C97B4 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977994D42C769A1A001C97B4 /* CryptoService.swift */; };
 		979EAAF72C77ED9700E8307E /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979EAAF62C77ED9700E8307E /* PortfolioView.swift */; };
 		97AAB7422C778DDF006BC245 /* CryptoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB7412C778DDF006BC245 /* CryptoDetailView.swift */; };
+		97C17D882C78AB43009BFFA7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17D872C78AB43009BFFA7 /* NetworkManager.swift */; };
 		97C786B52C777B080009EEFC /* GlobalMarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C786B42C777B080009EEFC /* GlobalMarketModel.swift */; };
 		97C786B72C777BBF0009EEFC /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C786B62C777BBF0009EEFC /* MarketDataService.swift */; };
 		97DBDF882C75012F0052CD28 /* CryptoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DBDF872C75012F0052CD28 /* CryptoAppApp.swift */; };
@@ -24,10 +28,14 @@
 /* Begin PBXFileReference section */
 		970D91732C766553004C219E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		970D91772C76673B004C219E /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		97549A522C7810F100D02536 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9772EDF92C789C30002D98E0 /* CryptoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoData.swift; sourceTree = "<group>"; };
+		9772EDFB2C789E6A002D98E0 /* PriceLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLineGraphView.swift; sourceTree = "<group>"; };
 		977994D22C767C95001C97B4 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		977994D42C769A1A001C97B4 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
 		979EAAF62C77ED9700E8307E /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		97AAB7412C778DDF006BC245 /* CryptoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailView.swift; sourceTree = "<group>"; };
+		97C17D872C78AB43009BFFA7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		97C786B42C777B080009EEFC /* GlobalMarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMarketModel.swift; sourceTree = "<group>"; };
 		97C786B62C777BBF0009EEFC /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 		97DBDF842C75012F0052CD28 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,8 +133,17 @@
 			isa = PBXGroup;
 			children = (
 				97AAB7412C778DDF006BC245 /* CryptoDetailView.swift */,
+				9772EDFB2C789E6A002D98E0 /* PriceLineGraphView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		97C7E5FB2C78D8180046791D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				97C17D872C78AB43009BFFA7 /* NetworkManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		97DBDF7B2C75012F0052CD28 = {
@@ -148,14 +165,17 @@
 		97DBDF862C75012F0052CD28 /* CryptoApp */ = {
 			isa = PBXGroup;
 			children = (
+				97C7E5FB2C78D8180046791D /* Manager */,
 				97DBDF872C75012F0052CD28 /* CryptoAppApp.swift */,
 				97DBDF972C7503FB0052CD28 /* Extensions */,
 				97DBDF9A2C7506960052CD28 /* Core */,
 				977994D12C76728D001C97B4 /* Models */,
 				977994D42C769A1A001C97B4 /* CryptoService.swift */,
+				9772EDF92C789C30002D98E0 /* CryptoData.swift */,
 				97C786B62C777BBF0009EEFC /* MarketDataService.swift */,
 				97DBDF952C7502C50052CD28 /* Assets.xcassets */,
 				97DBDF8D2C7501310052CD28 /* Preview Content */,
+				97549A522C7810F100D02536 /* GoogleService-Info.plist */,
 			);
 			path = CryptoApp;
 			sourceTree = "<group>";
@@ -251,6 +271,7 @@
 			files = (
 				97DBDF8F2C7501310052CD28 /* Preview Assets.xcassets in Resources */,
 				97DBDF962C7502C50052CD28 /* Assets.xcassets in Resources */,
+				97549A532C7810F100D02536 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +290,11 @@
 				970D91742C766553004C219E /* HomeView.swift in Sources */,
 				97DBDF882C75012F0052CD28 /* CryptoAppApp.swift in Sources */,
 				977994D32C767C95001C97B4 /* CoinModel.swift in Sources */,
+				9772EDFA2C789C30002D98E0 /* CryptoData.swift in Sources */,
+				97C17D882C78AB43009BFFA7 /* NetworkManager.swift in Sources */,
 				97DBDF992C7504220052CD28 /* Color.swift in Sources */,
 				977994D52C769A1A001C97B4 /* CryptoService.swift in Sources */,
+				9772EDFC2C789E6A002D98E0 /* PriceLineGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

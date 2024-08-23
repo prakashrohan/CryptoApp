@@ -93,6 +93,8 @@ struct PortfolioView: View {
     }
 }
 
+
+
 #Preview {
     PortfolioView(portfolio: .constant([]))
 }

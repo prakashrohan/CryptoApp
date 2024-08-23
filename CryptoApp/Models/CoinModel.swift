@@ -17,8 +17,6 @@ struct MarketData: Codable, Identifiable {
     let price_change_percentage_24h: Double
     let image: String
 
-    // Conform to Identifiable for use in List
-    //var id: String { id }
 }
 
 
