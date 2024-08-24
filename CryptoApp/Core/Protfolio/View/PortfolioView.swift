@@ -12,48 +12,50 @@ struct PortfolioView: View {
             VStack {
                 portfolioHeader
                 
-                // Portfolio list
+                
                 List {
                     ForEach(portfolio) { item in
-                        HStack {
-                            if showRemoveCryptoOptions {
-                                Image(systemName: "minus.circle")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(Color.red)
-                                    .onTapGesture {
-                                        withAnimation(.easeInOut(duration: 0.3)) {
-                                            removeItem(item)
-                                        }
-                                    }
-                            } else {
-                                AsyncImage(url: URL(string: item.image)) { image in
-                                    image.resizable()
+                        NavigationLink(destination: CryptoDetailView(crypto: item)) {
+                            HStack {
+                                if showRemoveCryptoOptions {
+                                    Image(systemName: "minus.circle")
+                                        .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 40, height: 40)
-                                } placeholder: {
-                                    ProgressView()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(Color.red)
+                                        .onTapGesture {
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                removeItem(item)
+                                            }
+                                        }
+                                } else {
+                                    AsyncImage(url: URL(string: item.image)) { image in
+                                        image.resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 40, height: 40)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
                                 }
+                                
+                                Text(item.name)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .padding(.leading, 8)
+                                
+                                Spacer()
+                                
+                                Text("\(item.current_price, specifier: "%.2f") USD")
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
                             }
-                            
-                            Text(item.name)
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .padding(.leading, 8)
-                            
-                            Spacer()
-                            
-                            Text("\(item.current_price, specifier: "%.2f") USD")
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                                .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
                         }
                     }
                     .onDelete(perform: removeItems)
                 }
             }
-            
+           // .navigationTitle("Portfolio")
         }
     }
     
@@ -93,9 +95,6 @@ struct PortfolioView: View {
     }
 }
 
-
-
 #Preview {
     PortfolioView(portfolio: .constant([]))
 }
-

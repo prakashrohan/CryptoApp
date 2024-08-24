@@ -48,6 +48,11 @@ struct CircleButton: View {
             .previewLayout(.sizeThatFits)
             .colorScheme(.dark)
         
+        CircleButton(iconName: "xmark")
+            .padding()
+            .previewLayout(.sizeThatFits)
+            .colorScheme(.dark)
+        
         
     }
   

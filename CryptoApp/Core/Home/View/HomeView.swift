@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct HomeView: View {
 
     @State private var marketData: [MarketData]?
@@ -11,6 +12,7 @@ struct HomeView: View {
     @State private var portfolio: [MarketData] = []
     @State private var tappedCryptoId: String? = nil
     @State private var selectedCrypto: MarketData? = nil
+    
 
     var body: some View {
         ZStack {
@@ -85,31 +87,58 @@ extension HomeView {
     }
 
     private func marketInfo(globalData: GlobalMarketData) -> some View {
-        VStack(alignment: .center, spacing: 4) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("Market Info")
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.bold)
-                .foregroundStyle(Color.theme.red)
+                .foregroundColor(Color.theme.red)
+                .padding(.bottom, 8)
+
             HStack {
-                Text("Market Cap:")
-                    .font(.title3)
-                    .foregroundColor(Color.theme.accent)
-                Text("\(formatNumber(globalData.data.marketCapUSD)) USD")
-                    .font(.title3)
-                    .foregroundColor(.primary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Market Cap")
+                        .font(.subheadline)
+                        .foregroundColor(Color.theme.accent)
+                    Text("\(formatNumber(globalData.data.marketCapUSD)) USD")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                }
+                Spacer()
+                Image(systemName: "chart.bar.fill")
+                    .foregroundColor(Color.theme.green)
+                    .font(.system(size: 32))
             }
+
+            Divider()
+                .background(Color.theme.accent)
+                .padding(.vertical, 8)
+
             HStack {
-                Text("24h Trading Volume:")
-                    .font(.title3)
-                    .foregroundColor(Color.theme.accent)
-                Text("\(formatNumber(globalData.data.totalVolumeUSD)) USD")
-                    .font(.title3)
-                    .foregroundColor(.primary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("24h Trading Volume")
+                        .font(.subheadline)
+                        .foregroundColor(Color.theme.accent)
+                    Text("\(formatNumber(globalData.data.totalVolumeUSD)) USD")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                }
+                Spacer()
+                Image(systemName: "arrow.up.arrow.down")
+                    .foregroundColor(Color.blue)
+                    .font(.system(size: 32))
             }
         }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.theme.background)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        )
         .padding(.horizontal)
-        .padding(.vertical, 4)
     }
+
 
     private var searchBar: some View {
         TextField("Search...", text: $searchText, onEditingChanged: { isEditing in
@@ -129,7 +158,7 @@ extension HomeView {
     private var cryptolist: some View {
         ZStack {
             VStack {
-                if let data = marketData {
+                if marketData != nil {
                     List(filteredCryptos) { item in
                         HStack {
                             if showAddCryptoOptions {
