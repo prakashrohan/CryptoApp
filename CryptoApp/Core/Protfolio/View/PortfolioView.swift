@@ -2,60 +2,70 @@ import SwiftUI
 
 struct PortfolioView: View {
     
-    @Binding var portfolio: [MarketData] // Binding to the portfolio array
+    @Binding var portfolio: [MarketData]
     @State private var showPortfolio: Bool = true
     @State private var showRemoveCryptoOptions: Bool = false
-    @Environment(\.presentationMode) var presentationMode // Environment variable to control view dismissal
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             VStack {
                 portfolioHeader
-                
-                
-                List {
-                    ForEach(portfolio) { item in
-                        NavigationLink(destination: CryptoDetailView(crypto: item)) {
-                            HStack {
-                                if showRemoveCryptoOptions {
-                                    Image(systemName: "minus.circle")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(Color.red)
-                                        .onTapGesture {
-                                            withAnimation(.easeInOut(duration: 0.3)) {
-                                                removeItem(item)
-                                            }
-                                        }
-                                } else {
-                                    AsyncImage(url: URL(string: item.image)) { image in
-                                        image.resizable()
+                    .padding(.top)
+                if portfolio.isEmpty {
+               
+                    Text("No Cryptocurrencies in Portfolio")
+                        .font(.headline)
+                        .foregroundColor(Color.gray)
+                        .padding()
+                    Spacer()
+                } else {
+                    List {
+                        ForEach(portfolio) { item in
+                            NavigationLink(destination: CryptoDetailView(crypto: item)) {
+                                HStack {
+                                    if showRemoveCryptoOptions {
+                                        Image(systemName: "minus.circle")
+                                            .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 40, height: 40)
-                                    } placeholder: {
-                                        ProgressView()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(Color.red)
+                                            .onTapGesture {
+                                                withAnimation(.easeInOut(duration: 0.3)) {
+                                                    removeItem(item)
+                                                }
+                                            }
+                                    } else {
+                                        AsyncImage(url: URL(string: item.image)) { image in
+                                            image.resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 40, height: 40)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
                                     }
+                                    
+                                    Text(item.name)
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                        .padding(.leading, 8)
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(item.current_price, specifier: "%.2f") USD")
+                                        .font(.subheadline)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
                                 }
-                                
-                                Text(item.name)
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                                    .padding(.leading, 8)
-                                
-                                Spacer()
-                                
-                                Text("\(item.current_price, specifier: "%.2f") USD")
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(item.price_change_percentage_24h >= 0 ? .green : .red)
                             }
                         }
+                        .onDelete(perform: removeItems)
                     }
-                    .onDelete(perform: removeItems)
+                    .listStyle(PlainListStyle()) 
                 }
             }
-           // .navigationTitle("Portfolio")
+            .padding(.horizontal)
+            .navigationBarHidden(true)
         }
     }
     
@@ -74,10 +84,10 @@ struct PortfolioView: View {
                 .foregroundColor(Color.theme.accent)
             Spacer()
             CircleButton(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: 180)) // Pointing left when in PortfolioView
+                .rotationEffect(Angle(degrees: 180))
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        presentationMode.wrappedValue.dismiss() // Dismiss the current view
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
         }

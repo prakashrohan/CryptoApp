@@ -7,11 +7,12 @@ struct PriceLineGraphView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            let graphWidth = geometry.size.width - 60
+            let graphWidth = geometry.size.width
             let graphHeight = geometry.size.height
+            let padding: CGFloat = 16
 
             ZStack {
-                
+                Color.clear
                 Path { path in
                     guard prices.count > 1 else { return }
                     
@@ -22,8 +23,7 @@ struct PriceLineGraphView: View {
                     
                     for i in prices.indices {
                         let x = stepX * CGFloat(i)
-                        let y = graphHeight * CGFloat(1 - (prices[i] - minY) / rangeY)
-                        
+                        let y = graphHeight * CGFloat(1 - (prices[i] - minY) / rangeY) * 0.9
                         if i == 0 {
                             path.move(to: CGPoint(x: x, y: y))
                         } else {
@@ -32,10 +32,11 @@ struct PriceLineGraphView: View {
                     }
                 }
                 .trim(from: 0, to: animationProgress)
-                .stroke(Color.blue, lineWidth: 2)
+                .stroke(Color.blue.gradient, lineWidth: 3)
+                .shadow(color: Color.blue.opacity(0.5), radius: 5, x: 0, y: 5)
                 .animation(.linear(duration: 2), value: animationProgress)
 
-               
+                
                 Path { path in
                     guard prices.count > 1 else { return }
                     
@@ -48,7 +49,7 @@ struct PriceLineGraphView: View {
                     
                     for i in prices.indices {
                         let x = stepX * CGFloat(i)
-                        let y = graphHeight * CGFloat(1 - (prices[i] - minY) / rangeY)
+                        let y = graphHeight * CGFloat(1 - (prices[i] - minY) / rangeY) * 0.9
                         
                         path.addLine(to: CGPoint(x: x, y: y))
                     }
@@ -56,7 +57,11 @@ struct PriceLineGraphView: View {
                     path.addLine(to: CGPoint(x: graphWidth, y: graphHeight))
                     path.closeSubpath()
                 }
-                .fill(Color.blue.opacity(0.2))
+                .fill(LinearGradient(
+                    gradient: Gradient(colors: [Color.blue.opacity(0.4), Color.clear]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                ))
                 .opacity(Double(animationProgress))
                 .animation(.linear(duration: 2), value: animationProgress)
 
@@ -65,15 +70,15 @@ struct PriceLineGraphView: View {
                     path.move(to: CGPoint(x: 0, y: graphHeight))
                     path.addLine(to: CGPoint(x: graphWidth, y: graphHeight))
                 }
-                .stroke(Color.gray, lineWidth: 1)
-                
+                .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+
                 Path { path in
                     path.move(to: CGPoint(x: 0, y: 0))
                     path.addLine(to: CGPoint(x: 0, y: graphHeight))
                 }
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Color.gray.opacity(0.4), lineWidth: 1)
                 
-                
+       
                 VStack(alignment: .trailing) {
                     let maxY = prices.max() ?? 0
                     let minY = prices.min() ?? 0
@@ -88,18 +93,29 @@ struct PriceLineGraphView: View {
                         
                         Text("\(formatNumber(price))")
                             .font(.caption)
+                            
                             .fontWeight(.heavy)
-                            .foregroundColor(.theme.accent)
+                            .foregroundStyle(Color.theme.accent)
                             .frame(width: 60, alignment: .trailing)
                             .padding(.trailing, 8)
                             .opacity(showLabels ? 1.0 : 0.0)
                             .offset(x: 0, y: yPosition - graphHeight / 2)
-                            .animation(.easeIn(duration: 0.5).delay(Double(i) * 0.1), value: showLabels) //
+                            .animation(.easeIn(duration: 0.5).delay(Double(i) * 0.1), value: showLabels)
                     }
                 }
                 .frame(width: 60, alignment: .leading)
-                .offset(x: 160)
+                .offset(x: -175)
                 
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                     
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 8)
+                    }
+                }
             }
             .onAppear {
                 animationProgress = 1.0
@@ -110,13 +126,14 @@ struct PriceLineGraphView: View {
                 }
             }
         }
-        .frame(height: 200)
+        .frame(height: 250)
+        .padding(.horizontal, 16)
     }
     
-
 }
 
 #Preview {
     PriceLineGraphView(prices: [34000, 35000, 36000, 35500, 34000, 33000, 34000, 35000, 36000, 36500])
-        .frame(height: 200)
+        .frame(height: 250)
 }
+

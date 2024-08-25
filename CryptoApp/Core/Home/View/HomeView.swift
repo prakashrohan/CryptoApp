@@ -46,7 +46,7 @@ extension HomeView {
                     withAnimation(.spring()) {
                         showAddCryptoOptions.toggle()
                         if showPortfolio {
-                            // Handle info button tap when in portfolio mode
+                            
                         }
                     }
                 }
@@ -132,11 +132,16 @@ extension HomeView {
         ZStack {
             VStack {
                 if let marketData = marketData {
-                    List(filteredCryptos) { item in
-                        cryptoListItemView(item: item)
-                            .onTapGesture {
-                                selectedCrypto = item
-                            }
+                    if filteredCryptos.isEmpty {
+
+                        NotFound()
+                    } else {
+                        List(filteredCryptos) { item in
+                            cryptoListItemView(item: item)
+                                .onTapGesture {
+                                    selectedCrypto = item
+                                }
+                        }
                     }
                 } else {
                     ProgressView()
@@ -154,6 +159,7 @@ extension HomeView {
             CryptoDetailView(crypto: crypto)
         }
     }
+
     
     private func cryptoListItemView(item: MarketData) -> some View {
         HStack {

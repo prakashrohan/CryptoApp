@@ -19,13 +19,14 @@ struct LaunchView: View {
     
     var body: some View {
         ZStack {
-            Color.launch.background
+            Color.black
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
                 Image("logo-transparent")
                     .resizable()
                     .frame(width: 100, height: 100)
+                
                 
                 
                 ZStack {
@@ -36,7 +37,7 @@ struct LaunchView: View {
                                     .font(.headline)
                                     .fontWeight(.heavy)
                                     .foregroundColor(Color.theme.accent)
-                                    .offset(y: counter == index ? -5 : 0)
+                                    .offset(y: counter == index ? -7 : 0)
                             }
                         }
                         .transition(AnyTransition.scale.animation(.easeIn))
@@ -49,7 +50,7 @@ struct LaunchView: View {
             showLoadingText.toggle()
         }
         .onReceive(timer, perform: { _ in
-            withAnimation(.spring()) {
+            withAnimation(.easeIn(duration: 0.4)) {
                 
                 let lastIndex = loadingText.count - 1
                 if counter == lastIndex {
@@ -71,8 +72,8 @@ extension Color {
 }
 
 struct LaunchColor {
-    let background = Color("LaunchBackground") // Add this color to your assets
-    let accent = Color("LaunchAccent")         // Add this color to your assets
+    let background = Color("LaunchBackground")
+    let accent = Color("LaunchAccent")        
     
     
 }

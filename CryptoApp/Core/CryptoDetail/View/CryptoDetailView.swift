@@ -16,7 +16,7 @@ struct CryptoDetailView: View {
         VStack {
             header
             if isLoading {
-                //oadingView
+               
                 BitcoinLoad()
                 
             } else {
@@ -46,6 +46,7 @@ struct CryptoDetailView: View {
         VStack {
             cryptoInfo
             graphSection
+            Spacer()
             overviewSection
         }
         .padding()
