@@ -14,6 +14,10 @@
 		9772EDFC2C789E6A002D98E0 /* PriceLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772EDFB2C789E6A002D98E0 /* PriceLineGraphView.swift */; };
 		977994D32C767C95001C97B4 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977994D22C767C95001C97B4 /* CoinModel.swift */; };
 		977994D52C769A1A001C97B4 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977994D42C769A1A001C97B4 /* CryptoService.swift */; };
+		978FF1962C7B73EB0062B953 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978FF1952C7B73EB0062B953 /* LaunchView.swift */; };
+		978FF19D2C7B82430062B953 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 978FF19C2C7B82430062B953 /* Lottie */; };
+		978FF1A02C7B82730062B953 /* BitcoinLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978FF19F2C7B82730062B953 /* BitcoinLoad.swift */; };
+		978FF1A22C7B83150062B953 /* BitcoinLoad.json in Resources */ = {isa = PBXBuildFile; fileRef = 978FF1A12C7B83150062B953 /* BitcoinLoad.json */; };
 		979EAAF72C77ED9700E8307E /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979EAAF62C77ED9700E8307E /* PortfolioView.swift */; };
 		97AAB7422C778DDF006BC245 /* CryptoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB7412C778DDF006BC245 /* CryptoDetailView.swift */; };
 		97C17D882C78AB43009BFFA7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17D872C78AB43009BFFA7 /* NetworkManager.swift */; };
@@ -21,7 +25,6 @@
 		97C786B52C777B080009EEFC /* GlobalMarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C786B42C777B080009EEFC /* GlobalMarketModel.swift */; };
 		97C786B72C777BBF0009EEFC /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C786B62C777BBF0009EEFC /* MarketDataService.swift */; };
 		97DBDF882C75012F0052CD28 /* CryptoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DBDF872C75012F0052CD28 /* CryptoAppApp.swift */; };
-		97DBDF8F2C7501310052CD28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97DBDF8E2C7501310052CD28 /* Preview Assets.xcassets */; };
 		97DBDF962C7502C50052CD28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97DBDF952C7502C50052CD28 /* Assets.xcassets */; };
 		97DBDF992C7504220052CD28 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DBDF982C7504220052CD28 /* Color.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +37,9 @@
 		9772EDFB2C789E6A002D98E0 /* PriceLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLineGraphView.swift; sourceTree = "<group>"; };
 		977994D22C767C95001C97B4 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		977994D42C769A1A001C97B4 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		978FF1952C7B73EB0062B953 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		978FF19F2C7B82730062B953 /* BitcoinLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinLoad.swift; sourceTree = "<group>"; };
+		978FF1A12C7B83150062B953 /* BitcoinLoad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BitcoinLoad.json; sourceTree = "<group>"; };
 		979EAAF62C77ED9700E8307E /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		97AAB7412C778DDF006BC245 /* CryptoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailView.swift; sourceTree = "<group>"; };
 		97C17D872C78AB43009BFFA7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -42,7 +48,6 @@
 		97C786B62C777BBF0009EEFC /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 		97DBDF842C75012F0052CD28 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97DBDF872C75012F0052CD28 /* CryptoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppApp.swift; sourceTree = "<group>"; };
-		97DBDF8E2C7501310052CD28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		97DBDF952C7502C50052CD28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		97DBDF982C7504220052CD28 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				978FF19D2C7B82430062B953 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,7 @@
 		970D91752C76670D004C219E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				978FF19E2C7B82600062B953 /* Animations */,
 				976707D72C79E740008F2E42 /* marketinfo */,
 				970D91762C766726004C219E /* CircleButton */,
 			);
@@ -107,6 +114,38 @@
 				97C786B42C777B080009EEFC /* GlobalMarketModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		978FF1932C7B73C70062B953 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				978FF1942C7B73DA0062B953 /* View */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		978FF1942C7B73DA0062B953 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				978FF1952C7B73EB0062B953 /* LaunchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		978FF19A2C7B81470062B953 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		978FF19E2C7B82600062B953 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				978FF1A12C7B83150062B953 /* BitcoinLoad.json */,
+				978FF19F2C7B82730062B953 /* BitcoinLoad.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		979EAAF22C77EC9500E8307E /* Protfolio */ = {
@@ -186,17 +225,9 @@
 				977994D12C76728D001C97B4 /* Models */,
 				97C6C63E2C7A2F1F0044B1DD /* Services */,
 				97DBDF952C7502C50052CD28 /* Assets.xcassets */,
-				97DBDF8D2C7501310052CD28 /* Preview Content */,
+				978FF19A2C7B81470062B953 /* Preview Content */,
 			);
 			path = CryptoApp;
-			sourceTree = "<group>";
-		};
-		97DBDF8D2C7501310052CD28 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				97DBDF8E2C7501310052CD28 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		97DBDF972C7503FB0052CD28 /* Extensions */ = {
@@ -210,6 +241,7 @@
 		97DBDF9A2C7506960052CD28 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				978FF1932C7B73C70062B953 /* LaunchScreen */,
 				970D91752C76670D004C219E /* Components */,
 				979EAAF22C77EC9500E8307E /* Protfolio */,
 				97AAB73F2C778D6C006BC245 /* CryptoDetail */,
@@ -235,6 +267,7 @@
 			);
 			name = CryptoApp;
 			packageProductDependencies = (
+				978FF19C2C7B82430062B953 /* Lottie */,
 			);
 			productName = CryptoApp;
 			productReference = 97DBDF842C75012F0052CD28 /* CryptoApp.app */;
@@ -265,6 +298,7 @@
 			);
 			mainGroup = 97DBDF7B2C75012F0052CD28;
 			packageReferences = (
+				978FF19B2C7B82430062B953 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 97DBDF852C75012F0052CD28 /* Products */;
 			projectDirPath = "";
@@ -280,7 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97DBDF8F2C7501310052CD28 /* Preview Assets.xcassets in Resources */,
+				978FF1A22C7B83150062B953 /* BitcoinLoad.json in Resources */,
 				97DBDF962C7502C50052CD28 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C786B52C777B080009EEFC /* GlobalMarketModel.swift in Sources */,
+				978FF1962C7B73EB0062B953 /* LaunchView.swift in Sources */,
 				979EAAF72C77ED9700E8307E /* PortfolioView.swift in Sources */,
 				970D91782C76673B004C219E /* CircleButton.swift in Sources */,
 				976707D92C79E766008F2E42 /* MarketInfo.swift in Sources */,
@@ -307,6 +342,7 @@
 				97DBDF992C7504220052CD28 /* Color.swift in Sources */,
 				977994D52C769A1A001C97B4 /* CryptoService.swift in Sources */,
 				9772EDFC2C789E6A002D98E0 /* PriceLineGraphView.swift in Sources */,
+				978FF1A02C7B82730062B953 /* BitcoinLoad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +548,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		978FF19B2C7B82430062B953 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		978FF19C2C7B82430062B953 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 978FF19B2C7B82430062B953 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97DBDF7C2C75012F0052CD28 /* Project object */;
 }

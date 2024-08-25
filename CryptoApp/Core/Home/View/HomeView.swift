@@ -19,7 +19,7 @@ struct HomeView: View {
             
             VStack {
                 homeHeader
-                if !showPortfolio {
+                if !showPortfolio && !isSearching {
                     marketInfoView
                 }
                 searchBar
@@ -254,6 +254,7 @@ func formatNumber(_ number: Double) -> String {
         return String(format: "%.2f", number)
     }
 }
+
 
 // MARK: - Gestures
 

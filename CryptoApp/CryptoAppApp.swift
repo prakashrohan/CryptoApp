@@ -9,12 +9,19 @@ import SwiftUI
 
 @main
 struct CryptoAppApp: App {
+    @State private var showLaunchView: Bool = true
     var body: some Scene {
         WindowGroup {
-            NavigationView{
-                HomeView()
-                    .toolbar(.hidden)
+            if showLaunchView {
+                LaunchView(showLaunchView: $showLaunchView)}
+            else{
+                NavigationView{
+                    HomeView()
+                        .toolbar(.hidden)
+                }
             }
+
+           
         }
     }
 }

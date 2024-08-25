@@ -16,7 +16,9 @@ struct CryptoDetailView: View {
         VStack {
             header
             if isLoading {
-                loadingView
+                //oadingView
+                BitcoinLoad()
+                
             } else {
                 contentView
             }
