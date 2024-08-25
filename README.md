@@ -74,7 +74,7 @@ The **Crypto Tracker App** allows you to stay updated with the latest cryptocurr
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/prakashrohan/CryptoApp/blob/main/MIT%20License) file for details.
 
 
 
