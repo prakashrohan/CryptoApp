@@ -71,6 +71,7 @@ The **Crypto Tracker App** allows you to stay updated with the latest cryptocurr
 - **Combine**: For handling asynchronous data streams.
 - **CoinGecko API**: To fetch real-time cryptocurrency data.
 - **Core Data (planned)**: To persist portfolio data.
+- **Lottie Files**: Better UI components 
 
 ## License
 
